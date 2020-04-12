@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MikuExercise</string>
+    <string name="app_name">Mikuercise</string>
     <string name="pic_title" translatable="false">Title</string>
-    <string name="main_message">Let\'s Exercise!</string>
-    <string name="button_running">Running</string>
-    <string name="button_squat">Squat</string>
-    <string name="button_swing">Swing</string>
+    <string name="text_menu_message">Let\'s Exercise!</string>
+    <string name="button_menu_abs">Abs</string>
+    <string name="button_menu_running">Running</string>
+    <string name="button_menu_squat">Squat</string>
+    <string name="button_menu_swing">Swing</string>
+    <string name="text_exercise_get_ready">Get Ready…</string>
+    <string name="text_exercise_start">Start!</string>
+    <string name="text_exercise_end">Well done!</string>
+    <string name="text_exercise_little">Just a little more!</string>
+    <string name="button_exercise_end">End</string>
 </resources>
