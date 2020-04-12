@@ -2,6 +2,10 @@
  
 Let's Exercise with Hatsune Miku.
 
-## Mode
+<img src="https://github.com/Aqua-ix/MikuExercise/blob/master/demo/title_demo.jpg" width="300px">
 
-### Sit Up
+## Sit Up Mode
+
+<img src="https://github.com/Aqua-ix/MikuExercise/blob/master/demo/situp_demo1.jpg" width="500px">
+
+<img src="https://github.com/Aqua-ix/MikuExercise/blob/master/demo/situp_demo2.jpg" width="500px">
