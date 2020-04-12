@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ミクササイズ</string>
-    <string name="text_menu_message">私と筋トレ...\nしませんか?</string>
-    <string name="button_menu_abs">腹筋する</string>
-    <string name="button_menu_running">ランニング</string>
-    <string name="button_menu_squat">スクワット</string>
-    <string name="button_menu_swing">スイング</string>
-    <string name="text_exercise_get_ready">よーい…</string>
-    <string name="text_exercise_start">スタート！</string>
-    <string name="text_exercise_end">お疲れ様でした！</string>
-    <string name="text_exercise_little">あと少し！</string>
-    <string name="button_exercise_end">終わる</string>
+    <string name="title_text_message">私と筋トレ...\nしませんか?</string>
+    <string name="title_text_situp">腹筋する</string>
+    <string name="title_button_running">ランニング</string>
+    <string name="title_button_squat">スクワット</string>
+    <string name="title_button_swing">スイング</string>
+    <string name="exercise_text_get_ready">よーい…</string>
+    <string name="exercise_text_start">スタート！</string>
+    <string name="exercise_text_end">お疲れ様でした！</string>
+    <string name="exercise_text_little">あと少し！</string>
+    <string name="exercise_button_end">終わる</string>
+    <string name="title_text_pic_times">何回腹筋する？</string>
+    <string name="title_text_times">回数</string>
+    <string name="title_text_ok">決定</string>
+    <string name="title_text_cancel">キャンセル</string>
 </resources>
