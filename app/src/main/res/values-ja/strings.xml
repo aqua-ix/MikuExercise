@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">初音ミクエクササイズ</string>
+    <string name="main_message">やりたいトレーニングを選んでね！</string>
+    <string name="button_running">ランニング</string>
+    <string name="button_squat">スクワット</string>
+    <string name="button_swing">スイング</string>
+</resources>

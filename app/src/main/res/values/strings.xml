@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MikuExercise</string>
+    <string name="pic_title" translatable="false">Title</string>
+    <string name="main_message">Let\'s Exercise!</string>
+    <string name="button_running">Running</string>
+    <string name="button_squat">Squat</string>
+    <string name="button_swing">Swing</string>
+</resources>
