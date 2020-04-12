@@ -8,11 +8,12 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="395dp"
+        android:layout_width="0dp"
         android:layout_height="303dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="64dp"
         android:contentDescription="@string/pic_title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/miku_title" />
@@ -39,9 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:layout_marginBottom="148dp"
         android:text="@string/button_menu_abs"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
