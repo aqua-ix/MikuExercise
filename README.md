@@ -2,20 +2,22 @@
  
 Let's Exercise with Hatsune Miku.
 
-<img src="https://github.com/Aqua-ix/MikuExercise/blob/master/demo/title_demo.jpg" width="300px">
-
 ## Sit Ups Mode
 
 The number of abs is automatically counted by the accelerometer.
 
-<img src="https://github.com/Aqua-ix/MikuExercise/blob/master/demo/situp_demo1.jpg" width="500px">
-
-<img src="https://github.com/Aqua-ix/MikuExercise/blob/master/demo/situp_demo2.jpg" width="500px">
-
-<img src="https://github.com/Aqua-ix/MikuExercise/blob/master/demo/situp_demo3.jpg" width="500px">
+<img src="demo/situps_demo.gif" width="500px">
 
 ## TODO
 
 - Push Ups Mode
 - Running Mode
 - Squat Mode
+
+## Credit
+
+This application features an adaptation of Hatsune Miku, © Crypton Future Media, Inc. 2007, licensed under a [CC BY-NC](http://creativecommons.org/licenses/by-nc/3.0/).
+
+## Author
+
+[Soichi Ikebe](https://github.com/Aqua-ix)
