@@ -14,6 +14,10 @@ The number of abs is automatically counted by the accelerometer.
 - Running Mode
 - Squat Mode
 
+## Licence
+
+[Apache License 2.0](https://github.com/Aqua-ix/YoubiMiku/blob/master/LICENSE)
+
 ## Credit
 
 This application features an adaptation of Hatsune Miku, © Crypton Future Media, Inc. 2007, licensed under a [CC BY-NC](http://creativecommons.org/licenses/by-nc/3.0/).
