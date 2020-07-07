@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">ミクササイズ</string>
-    <string name="title_text_message">私と筋トレ…\nしませんか?</string>
+    <string name="title_text_message">私と筋トレしませんか?</string>
     <string name="title_text_start">スタート!</string>
     <string name="title_text_situp">腹筋</string>
     <string name="title_text_squat">スクワット</string>
-    <string name="title_text_pushup">腕立て伏せ</string>
+    <string name="title_text_pushup">腕立て</string>
     <string name="title_button_running">ランニング</string>
     <string name="title_button_squat">スクワット</string>
     <string name="title_button_swing">スイング</string>
+    <string name="title_text_pic_times">何回腹筋する？</string>
+    <string name="title_text_times">回数</string>
+    <string name="title_text_menu">メニュー</string>
+    <string name="title_error_times">回数を入力してください。</string>
+
     <string name="exercise_text_get_ready">よーい…</string>
-    <string name="exercise_text_start">スタート！</string>
+    <string name="exercise_text_remain">あと…</string>
+    <string name="exercise_text_times">%1$d回</string>
     <string name="exercise_text_end">お疲れ様でした！</string>
     <string name="exercise_text_little">あと少し！</string>
     <string name="exercise_button_end">終わる</string>
-    <string name="title_text_pic_times">何回腹筋する？</string>
-    <string name="title_text_times">回数</string>
-    <string name="title_text_ok">決定</string>
-    <string name="title_text_cancel">キャンセル</string>
-    <string name="title_text_menu">メニュー</string>
 </resources>

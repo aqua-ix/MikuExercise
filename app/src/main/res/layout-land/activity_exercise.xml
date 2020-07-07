@@ -11,8 +11,8 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="@string/pic_title"
-        app:layout_constraintBottom_toTopOf="@+id/verticalGuideline"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/endButton"
+        app:layout_constraintEnd_toStartOf="@+id/verticalGuideline"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/normal" />
@@ -20,8 +20,8 @@
     <com.github.library.bubbleview.BubbleTextView
         android:id="@+id/bubbleTextView"
         android:layout_width="0dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="32dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="16dp"
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/exercise_text_get_ready"
@@ -31,24 +31,26 @@
         app:angle="15dp"
         app:arrowCenter="false"
         app:arrowHeight="20dp"
-        app:arrowLocation="top"
-        app:arrowPosition="30dp"
-        app:arrowWidth="30dp"
+        app:arrowLocation="left"
+        app:arrowPosition="35dp"
+        app:arrowWidth="18dp"
         app:bubbleColor="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toTopOf="@+id/horizontalGuideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/verticalGuideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/counterText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:textAlignment="center"
         android:textSize="90sp"
         app:layout_constraintBottom_toTopOf="@+id/endButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bubbleTextView"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="@+id/horizontalGuideline"
         tools:text="0回" />
 
     <com.google.android.material.button.MaterialButton
@@ -57,7 +59,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="16dp"
         android:gravity="center"
         android:text="@string/exercise_button_end"
         android:textAlignment="center"
@@ -72,7 +74,14 @@
         android:id="@+id/verticalGuideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         app:layout_constraintGuide_percent="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontalGuideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.4" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

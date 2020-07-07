@@ -2,22 +2,24 @@
 <resources>
     <string name="app_name">Mikuercise</string>
     <string name="pic_title" translatable="false">Title</string>
+
     <string name="title_text_message">Let\'s Exercise!</string>
     <string name="title_text_situp">Abs</string>
     <string name="title_button_running">Running</string>
     <string name="title_button_squat">Squat</string>
     <string name="title_button_swing">Swing</string>
-    <string name="exercise_text_get_ready">Get Ready…</string>
-    <string name="exercise_text_start">Start!</string>
-    <string name="exercise_text_end">Well done!</string>
-    <string name="exercise_text_little">Just a little more!</string>
-    <string name="exercise_button_end">End</string>
     <string name="title_text_pic_times">Pic Number of Times</string>
     <string name="title_text_times">Times</string>
-    <string name="title_text_ok">OK</string>
-    <string name="title_text_cancel">CANCEL</string>
     <string name="title_text_squat">Squat</string>
     <string name="title_text_pushup">PushUp</string>
     <string name="title_text_start">Start!</string>
     <string name="title_text_menu">Menu</string>
+    <string name="title_error_times">Please confirm times.</string>
+
+    <string name="exercise_text_get_ready">Get Ready…</string>
+    <string name="exercise_text_remain">Remaining</string>
+    <string name="exercise_text_times">%1$d Times</string>
+    <string name="exercise_text_end">Well done!</string>
+    <string name="exercise_text_little">Just a little more!</string>
+    <string name="exercise_button_end">End</string>
 </resources>

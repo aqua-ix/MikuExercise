@@ -9,6 +9,7 @@ import android.hardware.SensorManager
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_exercise.*
 
@@ -38,6 +39,7 @@ class ExerciseActivity : AppCompatActivity() {
         var absLittle = (absRemaining * 0.2).toInt()
     }
 
+    // TODO 回転方向固定
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -73,8 +75,11 @@ class ExerciseActivity : AppCompatActivity() {
     fun startAbs() {
         //audioUtil.playAudio(R.raw.voice_start)
         playAudio(R.raw.voice_start)
-        counterText.text = "$absRemaining"
-        messageText.text = this.getText(R.string.exercise_text_start)
+        counterText.setText(
+            getString(R.string.exercise_text_times, absRemaining),
+            TextView.BufferType.NORMAL
+        )
+        bubbleTextView.text = this.getText(R.string.exercise_text_remain)
         sensorManager.registerListener(accelerometer, sensor, SensorManager.SENSOR_DELAY_NORMAL)
         Log.d(ExerciseActivity::class.toString(), "startAbs()")
     }
@@ -83,18 +88,21 @@ class ExerciseActivity : AppCompatActivity() {
         //audioUtil.playAudio(R.raw.voice_otukaresamadesita)
         playAudio(R.raw.voice_otukaresamadesita)
         sensorManager.unregisterListener(accelerometer, sensor)
-        messageText.text = this.getText(R.string.exercise_text_end)
+        bubbleTextView.text = this.getText(R.string.exercise_text_end)
         Log.d(ExerciseActivity::class.toString(), "finishAbs()")
     }
 
     fun countAbs() {
         absRemaining--
-        counterText.text = ("$absRemaining")
+        counterText.setText(
+            getString(R.string.exercise_text_times, absRemaining),
+            TextView.BufferType.NORMAL
+        )
         when (absRemaining) {
             absLittle -> {
                 //audioUtil.playAudio(R.raw.voice_atosukosi)
                 playAudio(R.raw.voice_atosukosi)
-                messageText.text = this.getText(R.string.exercise_text_little)
+                bubbleTextView.text = this.getText(R.string.exercise_text_little)
                 imageView.setImageDrawable(this.getDrawable(R.drawable.glad))
             }
             0 -> finishAbs()
