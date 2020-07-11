@@ -2,6 +2,7 @@ package com.aqua_ix.mikuexercise
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -10,8 +11,10 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_exercise.*
+
 
 class ExerciseActivity : AppCompatActivity() {
 
@@ -39,9 +42,9 @@ class ExerciseActivity : AppCompatActivity() {
         var absLittle = (absRemaining * 0.2).toInt()
     }
 
-    // TODO 回転方向固定
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        requestedOrientation = getOrientation()
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
@@ -52,7 +55,6 @@ class ExerciseActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        countDownTimer.start()
         position = Position.DOWN
         absRemaining = intent.getIntExtra("TIMES", DEFAULT_TIMES_OF_ABS)
         absLittle = (absRemaining * 0.2).toInt()
@@ -69,7 +71,42 @@ class ExerciseActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        playAudio(R.raw.voice_youi)
+
+        AlertDialog.Builder(this)
+            .setMessage(getMessage())
+            .setPositiveButton(R.string.dialog_start) { _, _ ->
+                playAudio(R.raw.voice_youi)
+                countDownTimer.start()
+            }
+            .show()
+
+    }
+
+    private fun getMessage(): Int {
+        return when (intent.getStringExtra("MENU")) {
+            getString(R.string.title_text_situp) -> R.string.dialog_text_situp
+            getString(R.string.title_text_pushup) -> R.string.dialog_text_pushup
+            getString(R.string.title_text_squat) -> R.string.dialog_text_squat
+            else -> R.string.dialog_text_situp
+        }
+    }
+
+    private fun getOrientation(): Int {
+        return when (intent.getStringExtra("MENU")) {
+            getString(R.string.title_text_situp) -> ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            getString(R.string.title_text_pushup) -> ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+            getString(R.string.title_text_squat) -> ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+            else -> ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+        }
+    }
+
+    private fun startExercise() {
+        when (intent.getStringExtra("MENU")) {
+            getString(R.string.title_text_situp) -> startAbs()
+            getString(R.string.title_text_pushup) -> startAbs()
+            getString(R.string.title_text_squat) -> startAbs()
+            else -> startAbs()
+        }
     }
 
     fun startAbs() {
@@ -137,7 +174,7 @@ class ExerciseActivity : AppCompatActivity() {
         var countDown = COUNT_DOWN_START_VALUE
 
         override fun onFinish() {
-            startAbs()
+            startExercise()
         }
 
         override fun onTick(millisUntilFinished: Long) {
