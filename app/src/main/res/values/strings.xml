@@ -15,6 +15,10 @@
     <string name="title_text_start">Start!</string>
     <string name="title_text_menu">Menu</string>
     <string name="title_error_times">Please confirm times.</string>
+    <string name="dialog_text_situp">Turn your smartphone sideways and hold your smartphone in front of your chest.</string>
+    <string name="dialog_text_pushup">The sensor counts when your nose approaches your smartphone.</string>
+    <string name="dialog_text_squat">Turn your smartphone sideways and hold it in front of your body to squat.</string>
+    <string name="dialog_start">Start</string>
 
     <string name="exercise_text_get_ready">Get Ready…</string>
     <string name="exercise_text_remain">Remaining</string>

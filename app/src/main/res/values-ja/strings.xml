@@ -13,6 +13,10 @@
     <string name="title_text_times">回数</string>
     <string name="title_text_menu">メニュー</string>
     <string name="title_error_times">回数を入力してください。</string>
+    <string name="dialog_text_situp">スマホを横向きにして、胸の前で抱えて腹筋してください。</string>
+    <string name="dialog_text_pushup">鼻をスマホに近づけるとカウントします。</string>
+    <string name="dialog_text_squat">スマホを横向きにして、体の前で持ってスクワットしてください。</string>
+    <string name="dialog_start">始める</string>
 
     <string name="exercise_text_get_ready">よーい…</string>
     <string name="exercise_text_remain">あと…</string>
