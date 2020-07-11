@@ -24,7 +24,10 @@ class MainActivity : AppCompatActivity() {
                 title_times_input.setText(getString(TIMES_INPUT), TextView.BufferType.NORMAL)
             }
         } else {
-            title_menu_selection.setText(getString(R.string.title_text_situp), TextView.BufferType.NORMAL)
+            title_menu_selection.setText(
+                getString(R.string.title_text_situp),
+                TextView.BufferType.NORMAL
+            )
         }
 
         val items = arrayOf(
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         startButton.setOnClickListener {
 
-            if(title_times_input.text.toString().isEmpty()) {
+            if (title_times_input.text.toString().isEmpty()) {
                 timesInputLayout.error = getString(R.string.title_error_times)
                 return@setOnClickListener
             } else {
@@ -52,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, ExerciseActivity::class.java).putExtra(
                 "TIMES",
                 Integer.parseInt(title_times_input.text.toString())
-            )
+            ).putExtra("MENU", title_menu_selection.text.toString())
             startActivity(intent)
         }
 
