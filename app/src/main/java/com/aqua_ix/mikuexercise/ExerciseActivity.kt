@@ -1,6 +1,7 @@
 package com.aqua_ix.mikuexercise
 
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.hardware.Sensor
@@ -11,12 +12,11 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_exercise.*
 
 
-class ExerciseActivity : AppCompatActivity() {
+class ExerciseActivity : AppCompatActivity(), DialogInterface.OnClickListener {
 
     lateinit var audioUtil: AudioUtil
 
@@ -38,8 +38,8 @@ class ExerciseActivity : AppCompatActivity() {
         private lateinit var sensor: Sensor
 
         lateinit var position: Position
-        var absRemaining = DEFAULT_TIMES_OF_ABS
-        var absLittle = (absRemaining * 0.2).toInt()
+        var exerciseRemaining = DEFAULT_TIMES_OF_ABS
+        var exerciseLittle = (exerciseRemaining * 0.2).toInt()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,17 +47,20 @@ class ExerciseActivity : AppCompatActivity() {
         requestedOrientation = getOrientation()
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
-        sensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
+        sensor = sensorManager.getDefaultSensor(getSensorMode())
 
         setContentView(R.layout.activity_exercise)
         endButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
             startActivity(intent)
+            reset()
         }
 
         position = Position.DOWN
-        absRemaining = intent.getIntExtra("TIMES", DEFAULT_TIMES_OF_ABS)
-        absLittle = (absRemaining * 0.2).toInt()
+        exerciseRemaining = intent.getIntExtra("TIMES", DEFAULT_TIMES_OF_ABS)
+        exerciseLittle = (exerciseRemaining * 0.2).toInt()
 
         audioUtil = AudioUtil.getInstance(this)
         audioUtil.createSoundMap(
@@ -66,20 +69,22 @@ class ExerciseActivity : AppCompatActivity() {
             R.raw.voice_atosukosi,
             R.raw.voice_otukaresamadesita
         )
+
+        val dialog = StartDialogFragment()
+        val args = Bundle()
+        args.putInt("msg", getMessage())
+        dialog.arguments = args
+        dialog.show(supportFragmentManager, "startDialog")
+        if (savedInstanceState != null) {
+            dialog.dismiss()
+        }
         Log.d(ExerciseActivity::class.toString(), "onCreate()")
     }
 
-    override fun onStart() {
-        super.onStart()
-
-        AlertDialog.Builder(this)
-            .setMessage(getMessage())
-            .setPositiveButton(R.string.dialog_start) { _, _ ->
-                playAudio(R.raw.voice_youi)
-                countDownTimer.start()
-            }
-            .show()
-
+    override fun onClick(dialog: DialogInterface?, which: Int) {
+        when (which) {
+            DialogInterface.BUTTON_POSITIVE -> countDownTimer.start()
+        }
     }
 
     private fun getMessage(): Int {
@@ -100,49 +105,55 @@ class ExerciseActivity : AppCompatActivity() {
         }
     }
 
-    private fun startExercise() {
-        when (intent.getStringExtra("MENU")) {
-            getString(R.string.title_text_situp) -> startAbs()
-            getString(R.string.title_text_pushup) -> startAbs()
-            getString(R.string.title_text_squat) -> startAbs()
-            else -> startAbs()
+    private fun getSensorMode(): Int {
+        return when (intent.getStringExtra("MENU")) {
+            getString(R.string.title_text_situp) -> Sensor.TYPE_ACCELEROMETER
+            getString(R.string.title_text_pushup) -> Sensor.TYPE_PROXIMITY
+            getString(R.string.title_text_squat) -> Sensor.TYPE_ACCELEROMETER
+            else -> Sensor.TYPE_ACCELEROMETER
         }
     }
 
-    fun startAbs() {
+    private fun startExercise() {
         //audioUtil.playAudio(R.raw.voice_start)
         playAudio(R.raw.voice_start)
         counterText.setText(
-            getString(R.string.exercise_text_times, absRemaining),
+            getString(R.string.exercise_text_times, exerciseRemaining),
             TextView.BufferType.NORMAL
         )
         bubbleTextView.text = this.getText(R.string.exercise_text_remain)
-        sensorManager.registerListener(accelerometer, sensor, SensorManager.SENSOR_DELAY_NORMAL)
-        Log.d(ExerciseActivity::class.toString(), "startAbs()")
+        sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL)
+        Log.d(ExerciseActivity::class.toString(), "startExercise()")
     }
 
-    private fun finishAbs() {
+    private fun finishExercise() {
         //audioUtil.playAudio(R.raw.voice_otukaresamadesita)
         playAudio(R.raw.voice_otukaresamadesita)
-        sensorManager.unregisterListener(accelerometer, sensor)
+        sensorManager.unregisterListener(sensorEventListener, sensor)
         bubbleTextView.text = this.getText(R.string.exercise_text_end)
-        Log.d(ExerciseActivity::class.toString(), "finishAbs()")
+        Log.d(ExerciseActivity::class.toString(), "finishExercise()")
     }
 
-    fun countAbs() {
-        absRemaining--
+    private fun reset() {
+        countDownTimer.cancel()
+        sensorManager.unregisterListener(sensorEventListener, sensor)
+        finish()
+    }
+
+    private fun countExercise() {
+        exerciseRemaining--
         counterText.setText(
-            getString(R.string.exercise_text_times, absRemaining),
+            getString(R.string.exercise_text_times, exerciseRemaining),
             TextView.BufferType.NORMAL
         )
-        when (absRemaining) {
-            absLittle -> {
+        when (exerciseRemaining) {
+            exerciseLittle -> {
                 //audioUtil.playAudio(R.raw.voice_atosukosi)
                 playAudio(R.raw.voice_atosukosi)
                 bubbleTextView.text = this.getText(R.string.exercise_text_little)
                 imageView.setImageDrawable(this.getDrawable(R.drawable.glad))
             }
-            0 -> finishAbs()
+            0 -> finishExercise()
         }
     }
 
@@ -152,17 +163,22 @@ class ExerciseActivity : AppCompatActivity() {
         }
     }
 
-    private val accelerometer = object : SensorEventListener {
+    private val sensorEventListener = object : SensorEventListener {
         override fun onSensorChanged(event: SensorEvent?) {
             if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
                 when {
                     position == Position.DOWN && event.values[2] > Acceleration.MAX.value -> {
                         position = Position.UP
-                        countAbs()
+                        countExercise()
                     }
                     position == Position.UP && event.values[2] < Acceleration.MIN.value -> {
                         position = Position.DOWN
                     }
+                }
+            } else if (event?.sensor?.type == Sensor.TYPE_PROXIMITY) {
+                if(event.values[0] < sensor.maximumRange) {
+                    Log.d("sensor", event.values[0].toString())
+                    countExercise()
                 }
             }
         }

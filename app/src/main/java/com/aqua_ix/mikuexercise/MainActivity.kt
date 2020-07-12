@@ -80,8 +80,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     companion object {
-        val MENU_SELECTION = "MenuSelection"
-        val TIMES_INPUT = "TimesInput"
+        const val MENU_SELECTION = "MenuSelection"
+        const val TIMES_INPUT = "TimesInput"
     }
 }
 
