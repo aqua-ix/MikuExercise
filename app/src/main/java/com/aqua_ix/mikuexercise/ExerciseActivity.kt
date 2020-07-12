@@ -26,19 +26,21 @@ class ExerciseActivity : AppCompatActivity(), DialogInterface.OnClickListener {
     }
 
     enum class Acceleration(val value: Int) {
-        MAX(8),
-        MIN(4)
+        SITUP_MAX(10),
+        SITUP_MIN(-10),
+        SQUAT_MAX(20),
+        SQUAT_MIN(5)
     }
 
     companion object {
         private const val COUNT_DOWN_START_VALUE = 5000L
-        private const val DEFAULT_TIMES_OF_ABS = 10
+        private const val DEFAULT_TIMES_OF_SITUP = 10
 
         private lateinit var sensorManager: SensorManager
         private lateinit var sensor: Sensor
 
         lateinit var position: Position
-        var exerciseRemaining = DEFAULT_TIMES_OF_ABS
+        var exerciseRemaining = DEFAULT_TIMES_OF_SITUP
         var exerciseLittle = (exerciseRemaining * 0.2).toInt()
     }
 
@@ -59,7 +61,7 @@ class ExerciseActivity : AppCompatActivity(), DialogInterface.OnClickListener {
         }
 
         position = Position.DOWN
-        exerciseRemaining = intent.getIntExtra("TIMES", DEFAULT_TIMES_OF_ABS)
+        exerciseRemaining = intent.getIntExtra("TIMES", DEFAULT_TIMES_OF_SITUP)
         exerciseLittle = (exerciseRemaining * 0.2).toInt()
 
         audioUtil = AudioUtil.getInstance(this)
@@ -165,13 +167,14 @@ class ExerciseActivity : AppCompatActivity(), DialogInterface.OnClickListener {
 
     private val sensorEventListener = object : SensorEventListener {
         override fun onSensorChanged(event: SensorEvent?) {
+
             if (event?.sensor?.type == Sensor.TYPE_ACCELEROMETER) {
                 when {
-                    position == Position.DOWN && event.values[2] > Acceleration.MAX.value -> {
+                    position == Position.DOWN && getSensorValue(event) > getAccMax() -> {
                         position = Position.UP
                         countExercise()
                     }
-                    position == Position.UP && event.values[2] < Acceleration.MIN.value -> {
+                    position == Position.UP && getSensorValue(event) < getAccMin() -> {
                         position = Position.DOWN
                     }
                 }
@@ -180,6 +183,30 @@ class ExerciseActivity : AppCompatActivity(), DialogInterface.OnClickListener {
                     Log.d("sensor", event.values[0].toString())
                     countExercise()
                 }
+            }
+        }
+
+        private fun getSensorValue(event: SensorEvent): Float {
+            return when (intent.getStringExtra("MENU")) {
+                getString(R.string.title_text_situp) -> event.values[2]
+                getString(R.string.title_text_squat) -> event.values[0]
+                else -> 0f
+            }
+        }
+
+        private fun getAccMax(): Int{
+            return when (intent.getStringExtra("MENU")) {
+                getString(R.string.title_text_situp) -> Acceleration.SITUP_MAX.value
+                getString(R.string.title_text_squat) -> Acceleration.SQUAT_MAX.value
+                else -> 0
+            }
+        }
+
+        private fun getAccMin():Int{
+            return when (intent.getStringExtra("MENU")) {
+                getString(R.string.title_text_situp) -> Acceleration.SITUP_MIN.value
+                getString(R.string.title_text_squat) -> Acceleration.SQUAT_MIN.value
+                else -> 0
             }
         }
 
