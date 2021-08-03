@@ -1,5 +1,8 @@
 # MikuExercise
  
+![](https://github.com/Aqua-ix/MikuExercise/workflows/Android%20CI/badge.svg)
+![](https://img.shields.io/github/license/Aqua-ix/MikuExercise)
+
 Let's Exercise with Hatsune Miku.
 
 ## Sit Ups Mode
