@@ -5,17 +5,19 @@
 
 Let's Exercise with Hatsune Miku.
 
-## Sit Ups Mode
+## Features
 
-The number of abs is automatically counted by the accelerometer.
+Activity counts are automatically counted by the accelerometer or proximity sensor.
+
+- Sit Ups Mode
+- Push Ups Mode
+- Squat Mode
+
+## Demo Movie
+
+Sit ups mode demo movie.
 
 <img src="demo/situps_demo.gif" width="500px">
-
-## TODO
-
-- Push Ups Mode
-- Running Mode
-- Squat Mode
 
 ## Licence
 
