@@ -17,7 +17,7 @@ Activity counts are automatically counted by the accelerometer or proximity sens
 
 Sit ups mode demo movie.
 
-<img src="demo/situps_demo.gif" width="500px">
+<img src="demo/situps_demo.gif" width="600px">
 
 ## Licence
 
