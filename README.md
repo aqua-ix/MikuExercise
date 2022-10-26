@@ -13,17 +13,17 @@ Activity counts are automatically counted by the accelerometer or proximity sens
 - Push Ups Mode
 - Squat Mode
 
+### Algorithm
+
+Sit ups mode algorithm:
+
+<img src="https://user-images.githubusercontent.com/29789286/198051134-57dd901c-03db-4dcc-812c-19d60cccf58e.png" width="600px">
+
 ## Demo Movie
 
 Sit ups mode demo movie:
 
 <img src="demo/situps_demo.gif" width="600px">
-
-## Algorithm
-
-Sit ups mode algorithm:
-
-<img src="https://user-images.githubusercontent.com/29789286/198051134-57dd901c-03db-4dcc-812c-19d60cccf58e.png" width="800px"/>
 
 ## Licence
 
