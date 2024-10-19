@@ -21,10 +21,6 @@ Sit ups mode algorithm:
 
 <img src="https://user-images.githubusercontent.com/29789286/198051134-57dd901c-03db-4dcc-812c-19d60cccf58e.png" width="600px">
 
-## Licence
-
-[Apache License 2.0](https://github.com/Aqua-ix/YoubiMiku/blob/master/LICENSE)
-
 ## Credit
 
 This application features an adaptation of Hatsune Miku,  
